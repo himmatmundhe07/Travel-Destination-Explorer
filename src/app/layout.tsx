@@ -1,33 +1,24 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
-import { SiteHeader } from "@/components/layout/site-header";
-import { site } from "@/data/site";
 import "./globals.css";
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
-
-const jetbrains = JetBrains_Mono({
-  variable: "--font-jetbrains",
-  subsets: ["latin"],
-});
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: {
-    template: `%s · ${site.name}`,
-    default: site.name,
-  },
-  description: site.description,
+  title: "Wayfinder - Travel Destination Explorer",
+  description: "Browse curated travel places organized by geographic region and terrain.",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrains.variable} h-full antialiased`}>
-      <body className="flex min-h-full flex-col font-sans">
-        <SiteHeader />
-        <div className="flex flex-1 flex-col">{children}</div>
+    <html lang="en">
+      <body className="min-h-screen flex flex-col bg-white text-gray-900 antialiased font-sans">
+        <Navbar />
+        <main className="flex-1 w-full">{children}</main>
+        <Footer />
       </body>
     </html>
   );
